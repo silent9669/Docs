@@ -1,0 +1,226 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"-halt-on-error",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build LaTeX PDF",
+			"type": "shell",
+			"command": "pdflatex",
+			"args": [
+				"-interaction=nonstopmode",
+				"btl.tex"
+			],
+			"group": "build"
+		}
+	]
+}

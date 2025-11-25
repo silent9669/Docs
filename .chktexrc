@@ -1,0 +1,12 @@
+% ChkTeX configuration file to suppress style warnings that don't affect compilation
+
+% Suppress "Command terminated with space" warning
+-1
+
+% Suppress "Wrong length of dash" warning  
+-8
+
+% Suppress "Accent command" warning
+-7
+
+% Allow rerunfilecheck and other package warnings
