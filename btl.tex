@@ -2,7 +2,9 @@
 % Suppress reference warnings
 \usepackage{silence}
 \WarningFilter*{}{Label}
+\WarningFilter{vntex}{No input encoding}
 
+\usepackage[utf8]{inputenc}
 \usepackage{vntex}
 \usepackage[dvipsnames]{xcolor}
 %\usepackage[english,vietnam]{babel}
@@ -47,7 +49,7 @@
 \usepackage{epsfig}
 \usepackage{tikz}
 \usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, unicode]{hyperref}
-\usetikzlibrary{arrows,snakes,backgrounds}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds}
 
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true} 
 %\usepackage{pstcol} % PSTricks with the standard color package
@@ -98,7 +100,7 @@
 		\tiny \bf 
 	\end{tabular}  }
 \fancyfoot{} % clear all footer fields
-\fancyfoot[L]{\scriptsize \ttfamily Báo cáo bài tập lớn Vật lý Bán dẫn \textendash{} EE$1007$ \\ Niên khoá 2024 \textendash{} 2025}
+\fancyfoot[L]{\scriptsize \ttfamily Báo cáo bài tập lớn Vật lý Bán dẫn \textendash{} EE1007 \\ Niên khoá 2024 \textendash{} 2025}
 \makeatletter
 \fancyfoot[R]{\scriptsize \ttfamily Trang {\thepage}/\@ifundefined{r@LastPage}{?}{\pageref{LastPage}}}
 \makeatother
@@ -385,6 +387,11 @@ innerleftmargin=40pt,innerrightmargin=40pt]{mybox1}
 leftmargin=-5pt,rightmargin=-5pt,
 innerleftmargin=20pt,innerrightmargin=40pt]{mybox}
 
+% Khung đề bài
+\newmdenv[linecolor=black,backgroundcolor=gray!5,roundcorner=4pt,innertopmargin=8pt,innerbottommargin=8pt,
+innerleftmargin=14pt,innerrightmargin=14pt,skipabove=10pt,skipbelow=10pt]{problembox}
+
+
 
 
 \begin{document}
@@ -400,23 +407,23 @@ innerleftmargin=20pt,innerrightmargin=40pt]{mybox}
 \sloppy % <-- LỆNH CHỐNG TRÀN LỀ (Nới lỏng quy tắc ngắt dòng)
 
 \textit{Đầu tiên, chúng em xin cảm ơn khoa Kỹ thuật và Khoa học Máy tính,
-Trường Đại học Bách khoa - Đại học Quốc gia TP.HCM đã đưa
-bộ môn Giải tích 1 vào chương trình giảng dạy và kế hoạch học
-tập của chúng em, trong thời gian học môn này, chúng em đã
-học được rất nhiều kiến thức bổ ích, thiết thực trong thực tế
-cũng như cho quá trình học tập sau này của chúng em. Chúng
-em cũng xin gửi lời cảm ơn đến cô Đào Thị Thanh Xuân đã tận
-tình giảng dạy trong thời gian học tập trên lớp của cô quả thực rất
-chất lượng và góp phần rất lớn trong quá trình giúp chúng em
-hoàn thành bài báo cáo bài tập lớn lần này.}
-\par
-\textit{Tuy nhiên, vì vốn kiến thức còn hạn hẹp cũng như khả năng
-vận dụng còn hạn chế nên chúng em không thể tránh khỏi
-những sai sót không đáng có trong quá trình thực hiện bài tập
-cũng như soạn nên bài báo cáo này. Vì vậy chúng em cũng
-kính mong cô xem xét, đánh giá và góp ý để chúng em có
-thể thực hiện tốt hơn ở các bài tập lớn sau.
-Chúng em xin trân trọng cảm ơn.}
+Trường Đại học Bách khoa - Đại học Quốc gia TP.HCM đã đưa bộ môn
+Giải tích 1 vào chương trình giảng dạy và kế hoạch học tập của chúng em,
+trong thời gian học môn này, chúng em đã học được rất nhiều kiến thức bổ
+ích, thiết thực trong thực tế cũng như cho quá trình học tập sau này của
+chúng em. Chúng em cũng xin gửi lời cảm ơn đến cô Đào Thị Thanh Xuân
+đã tận tình giảng dạy trong thời gian học tập trên lớp của cô quả thực rất
+chất lượng và góp phần rất lớn trong quá trình giúp chúng em hoàn thành
+bài báo cáo bài tập lớn lần này.}
+
+\vspace{0.5cm}
+
+\textit{Tuy nhiên, vì vốn kiến thức còn hạn hẹp cũng như khả năng vận dụng
+còn hạn chế nên chúng em không thể tránh khỏi những sai sót không đáng
+có trong quá trình thực hiện bài tập cũng như soạn nên bài báo cáo này.
+Vì vậy chúng em cũng kính mong cô xem xét, đánh giá và góp ý để chúng
+em có thể thực hiện tốt hơn ở các bài tập lớn sau. Chúng em xin trân trọng
+cảm ơn.}
 
 } % Kết thúc nhóm, kích thước chữ và chế độ ngắt dòng trở về mặc định
 \newpage
@@ -617,5 +624,688 @@ A(t) = A(0) \cdot e^{rt}
 
 
 
+
+\newpage
+
+\section{Giải Bài tập}
+
+\subsection{Bài 1}
+\begin{problembox}
+\textbf{Đề bài.} Tháng 6/2019, ông A mua trả góp 1 chiếc Ti Vi 4k trị giá 45 triệu đồng. Biết lãi suất trả góp là 1\% mỗi tháng. Biết mỗi tháng ông A trả 2 triệu. Hãy xác định thời điểm ông A trả góp xong?
+\end{problembox}
+
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền ông A còn nợ sau $t$ (tháng).
+
+\hspace{1cm} $R$ là lãi suất trả góp mỗi tháng.
+
+\hspace{1cm} $M$ là số tiền ông A trả mỗi tháng.
+
+\vspace{0.5cm}
+
+Tốc độ thay đổi của số tiền ông A nợ theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) - M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = 0.01 \times S(t) - 2 \times 10^6
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.01 \times S(t) = -2 \times 10^6
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.01 \times t})' \, dt = \int (-2 \times 10^6 \times e^{-0.01 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.01 \times t} = 2 \times 10^8 \times e^{-0.01 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = 2 \times 10^8 + C \times e^{0.01 \times t}
+\]
+
+$S(0) = 45 \times 10^6 \Rightarrow C = -155 \times 10^6$
+
+$S(t_0) = 0 \Rightarrow 0 = 2 \times 10^8 - 155 \times 10^6 \times e^{0.01 \times t_0}$
+
+$\Rightarrow t_0 \approx 25{,}4892$ tháng
+
+Vậy thời điểm ông A trả góp xong là tháng 8/2021.
+
+\newpage
+\subsection{Bài 2}
+\begin{problembox}
+\textbf{Đề bài.} Tháng 2/2019, bà T mua trả góp 1 xe máy tay ga có giá 62 triệu đồng. Bà T trả ngay 16 triệu, phần còn lại bà T trả góp với lãi suất 1.5\% mỗi tháng. Biết mỗi tháng bà T trả 1 triệu. Hãy tính thời gian bà T cần để trả hết tiền mua xe?
+\end{problembox}
+
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền bà T còn nợ sau $t$ (tháng).
+
+\hspace{1cm} $R$ là lãi suất trả góp mỗi tháng.
+
+\hspace{1cm} $M$ là số tiền bà T trả mỗi tháng.
+
+Tốc độ thay đổi của số tiền bà T nợ theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) - M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = 0.015 \times S(t) - 1 \times 10^6
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.015 \times S(t) = -1 \times 10^6
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.015 \times t})' \, dt = \int (-10^6 \times e^{-0.015 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.015 \times t} = 10^8 \times e^{-0.015 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = 10^8 + C \times e^{0.015 \times t}
+\]
+
+$S(0) = 46 \times 10^6 \Rightarrow C = -\frac{62}{3} \times 10^6$
+
+$S(t_0) = 0 \Rightarrow 0 = 10^8 - \frac{62}{3} \times 10^6 \times e^{0.015 \times t_0}$
+
+$\Rightarrow t_0 \approx 78{,}07$ tháng
+
+Vậy thời điểm bà T cần trả góp xong là 79 tháng.
+
+\newpage
+\subsection{Bài 3}
+\begin{problembox}
+\textbf{Đề bài.} Đầu năm 2019 ông A mua một căn hộ chung cư có giá 2.2 tỷ. Vì không đủ tiền trả nên ông A đề nghị bên bán cho ông trả trước một phần tiền (gọi là $P_0$), phần còn lại ông A vay vốn ngân hàng với lãi suất 12\% một năm trả trong vòng 15 năm. Biết mỗi tháng ông A trả 20 triệu đồng. Hãy tính $P_0$?
+\end{problembox}
+
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền ông A còn nợ sau $t$ (năm).
+
+\hspace{1cm} $R$ là lãi suất trả góp mỗi năm.
+
+\hspace{1cm} $M$ là số tiền ông A trả mỗi năm.
+
+$M = 12 \times 2 \times 10^7 = 24 \times 10^7$
+
+Tốc độ thay đổi của số tiền ông A nợ theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) - M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = 0.12 \times S(t) - 24 \times 10^7
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.12 \times S(t) = -24 \times 10^7
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.12 \times t})' \, dt = \int (-24 \times 10^7 \times e^{-0.12 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.12 \times t} = 2 \times 10^9 \times e^{-0.12 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = 2 \times 10^9 + C \times e^{0.12 \times t}
+\]
+
+$S(15) = 0 \Rightarrow C = -2 \times 10^9 \times e^{-1.8}$
+
+Số tiền ban đầu: $S(0) = 2 \times 10^9 - 2 \times 10^9 \times e^{-1.8}$
+
+Số tiền phải trả trước: $P_0 = 2.2 \times 10^9 - S(0) = 530{,}597{,}776$ đồng
+
+\newpage
+\subsection{Bài 4}
+\begin{problembox}
+\textbf{Đề bài.} Bạn H mua trả góp một chiếc điện thoại Iphone XS Max có giá 27 triệu đồng tại một cửa hàng với lãi suất là 0.8\% một tháng và trả mỗi tháng 1 triệu trong vòng 18 tháng. Biết bạn H trả trước một phần tiền (gọi là $P_0$). Hãy tính $P_0$?
+\end{problembox}
+
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền bạn H còn nợ sau $t$ (tháng).
+
+\hspace{1cm} $R$ là lãi suất trả góp mỗi tháng.
+
+\hspace{1cm} $M$ là số tiền bạn H trả mỗi tháng.
+
+\hspace{1cm} $P_0$ là phần tiền bạn H trả trước.
+
+Tốc độ thay đổi của số tiền bạn H nợ theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) - M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = 0.008 \times S(t) - 10^6
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.008 \times S(t) = -10^6
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.008 \times t})' \, dt = \int (-10^6 \times e^{-0.008 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.008 \times t} = 125 \times 10^6 \times e^{-0.008 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = 125 \times 10^6 + C \times e^{0.008 \times t}
+\]
+
+$S(0) = 27 \times 10^6 - P_0$
+
+$\Rightarrow 27 \times 10^6 - P_0 = 125 \times 10^6 + C \times e^{0.008 \times 0}$
+
+$\Rightarrow C = 27 \times 10^6 - P_0 - 125 \times 10^6$
+
+$S(18) = 0$
+
+$\Rightarrow 0 = 125 \times 10^6 + (27 \times 10^6 - P_0 - 125 \times 10^6) \times e^{0.008 \times 18}$
+
+$P_0 \approx 10{,}235{,}969$ (đồng)
+
+\newpage
+\subsection{Bài 5}
+\begin{problembox}
+\textbf{Đề bài.} Tháng 1/2019 ông C mua trả góp 1 chiếc xe máy có giá 42 triệu với lãi suất 1\% / tháng. Hãy tính số tiền ông C phải trả mỗi tháng nếu ông C trả góp trong 18 tháng.
+\end{problembox}
+
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền ông C còn nợ sau $t$ (tháng).
+
+\hspace{1cm} $R$ là lãi suất trả góp mỗi tháng.
+
+\hspace{1cm} $M$ là số tiền ông C trả mỗi tháng.
+
+Tốc độ thay đổi của số tiền ông C nợ theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) - M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = 0.01 \times S(t) - M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.01 \times S(t) = -M
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.01 \times t})' \, dt = \int (-M \times e^{-0.01 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.01 \times t} = 100 \times M \times e^{-0.01 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = 100 \times M + C \times e^{0.01 \times t}
+\]
+
+\[
+\begin{cases}
+S(0) = 100 \times M + C = 42 \times 10^6 \\
+S(18) = 100 \times M + C \times e^{0.01 \times 18} = 0
+\end{cases}
+\]
+
+\[
+\begin{aligned}
+C &\approx -212{,}962{,}993 \\
+M &\approx 2{,}549{,}629 \text{ đồng}
+\end{aligned}
+\]
+
+Vậy mỗi tháng ông C phải trả $2{,}549{,}629$ đồng.
+
+\newpage
+\subsection{Bài 6}
+\begin{problembox}
+\textbf{Đề bài.} Tháng 1/2019 bà A gửi tiết kiệm một khoản tiền 100 triệu với lãi suất 0.4\%/ tháng. Mỗi tháng bà A rút 2 triệu đồng để chu cấp cho cháu nội còn nhỏ. Hãy tính thời gian tối đa bà A có thể chu cấp cho cháu mình từ khoản tiền gửi trên?
+\end{problembox}
+
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền bà A còn sau $t$ (tháng).
+
+\hspace{1cm} $R$ là lãi suất của tiết kiệm mỗi tháng.
+
+\hspace{1cm} $M$ là số tiền bà A rút mỗi tháng.
+
+Tốc độ thay đổi của số tiền bà A còn theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) - M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = 0.004 \times S(t) - 2 \times 10^6
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.004 \times S(t) = -2 \times 10^6
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.004 \times t})' \, dt = \int (-2 \times 10^6 \times e^{-0.004 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.004 \times t} = 5 \times 10^8 \times e^{-0.004 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = 5 \times 10^8 + C \times e^{0.004 \times t}
+\]
+
+$S(0) = 10^8$
+
+$\Rightarrow 10^8 = 5 \times 10^7 + C \times e^{0.004 \times 0}$
+
+$\Rightarrow C = 5 \times 10^7$
+
+$\Rightarrow S(t) = 5 \times 10^7 + 5 \times 10^7 \times e^{0.004 \times t}$
+
+Thời gian tối đa mà bà A có thể chu cấp cho cháu:
+
+$S(t_0) = 0$
+
+$\Rightarrow 0 = 5 \times 10^7 + C \times e^{0.004 \times t_0}$
+
+$\Rightarrow t_0 \approx 55{,}78$ (tháng)
+
+Lấy $t_0 = 55$
+
+Vậy thời gian mà bà A có thể chu cấp cho cháu mình là tới tháng 7/2024.
+
+\newpage
+\subsection{Bài 7}
+\begin{problembox}
+\textbf{Đề bài.} Để lập kế hoạch mua nhà riêng, anh K mở số tiết kiệm 100 triệu tại ngân hàng với lãi suất huy động cố định là 6\%/ năm. Mỗi tháng anh K gửi vào số tiết kiệm của mình 10 triệu đồng. Hãy tính thời gian tối thiểu anh K cần để có thể mua được căn nhà có giá 1.5 tỷ đồng?
+\end{problembox}
+
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền anh K tiết kiệm được sau $t$ (năm).
+
+\hspace{1cm} $R$ là lãi suất huy động mỗi năm.
+
+\hspace{1cm} $M$ là số tiền tiết kiệm anh K gửi vào mỗi năm.
+
+$M = 12 \times 10^7$
+
+Tốc độ thay đổi của số tiền anh K tiết kiệm theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) + M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = 0.06 \times S(t) + 12 \times 10^7
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.06 \times S(t) = 12 \times 10^7
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.06 \times t})' \, dt = \int (12 \times 10^7 \times e^{-0.06 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.06 \times t} = -2 \times 10^9 \times e^{-0.06 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = -2 \times 10^9 + C \times e^{0.06 \times t}
+\]
+
+$S(0) = 10^8 \Rightarrow C = 21 \times 10^8$
+
+$S(t_0) = 1.5 \times 10^9 = -2 \times 10^9 + 21 \times 10^8 \times e^{0.06 \times t_0}$
+
+$\Rightarrow t_0 \approx 8.51376 \approx 9$ năm
+\begin{align*}
+\frac{dS}{dt} &= r \times S(t) + M \\
+\frac{dS}{dt} &= 0.06 \times S(t) + 12 \times 10^7 \\
+\frac{dS}{dt} - 0.06 \times S(t) &= 12 \times 10^7
+\end{align*}
+
+Nhân cả hai vế với $e^{-0.06t}$:
+\begin{align*}
+\left(S(t) \times e^{-0.06t}\right)' &= 12 \times 10^7 \times e^{-0.06t} \\
+S(t) \times e^{-0.06t} &= -2 \times 10^9 \times e^{-0.06t} + C \\
+S(t) &= -2 \times 10^9 + C \times e^{0.06t}
+\end{align*}
+
+Với điều kiện ban đầu $S(0) = 10^8$:
+\[
+C = 21 \times 10^8
+\]
+
+Khi $S(t_0) = 1.5 \times 10^9$:
+\begin{align*}
+1.5 \times 10^9 &= -2 \times 10^9 + 21 \times 10^8 \times e^{0.06t_0} \\
+t_0 &= 8.51376 \approx 9 \text{ năm}
+\end{align*}
+
+\vspace{0.5cm}
+
+\subsection{Bài 8}
+\begin{problembox}
+\textbf{Đề bài.} Đầu năm 2019 ông C mua trả góp 1 chiếc ô tô với giá 680 triệu đồng trong 60 tháng. Hãy tính lãi suất theo năm ông phải trả biết lãi ghép hàng tháng và mỗi tháng ông C phải trả 12 triệu đồng.
+\end{problembox}
+
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền ông C còn phải trả sau $t$ (tháng).
+
+\hspace{1cm} $R$ là lãi suất trả góp mỗi tháng.
+
+\hspace{1cm} $M$ là số tiền ông C trả mỗi tháng.
+
+Tốc độ thay đổi của số tiền ông C phải trả theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) - M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = r \times S(t) - 12 \times 10^6
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - r \times S(t) = -12 \times 10^6
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-r \times t})' \, dt = \int (-12 \times 10^6 \times e^{-r \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-r \times t} = \frac{12 \times 10^6}{r} \times e^{-r \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = \frac{12 \times 10^6}{r} + C \times e^{r \times t}
+\]
+
+$S(0) = 680 \times 10^6$
+
+$\Rightarrow 680 \times 10^6 = \frac{12 \times 10^6}{r} + C \times e^{r \times 0}$
+
+$\Rightarrow C = 680 \times 10^6 - \frac{12 \times 10^6}{r}$
+
+$\Rightarrow S(t) = \frac{12 \times 10^6}{r} + \left(680 \times 10^6 - \frac{12 \times 10^6}{r}\right) \times e^{r \times t}$
+
+$S(60) = 0$
+
+$\Rightarrow 0 = \frac{12 \times 10^6}{r} + \left(680 \times 10^6 - \frac{12 \times 10^6}{r}\right) \times e^{r \times 60}$
+
+$\Rightarrow r \approx 0{,}0019 = 0.19\%$ (lãi suất theo tháng)
+
+Lãi suất theo năm:
+
+$12 \times \ln(1 + r_t) = r_n$
+
+$\Rightarrow 12 \times \ln(1 + 0.19\%) \approx 2.27\%$
+
+Vậy lãi suất theo năm ông phải trả là $2.27\%$.
+
+\newpage
+\subsection{Bài 9}
+\begin{problembox}
+\textbf{Đề bài.} Một công ty Bảo hiểm nhân thọ cung cấp sản phẩm cho trẻ dưới 18 tuổi như sau: khách hàng tham gia bảo hiểm mỗi năm đóng 15 triệu, lãi suất cố định là 3\%/ năm đến 18 tuổi, lãi ghép hàng năm, hết hạn hợp đồng khách hàng nhận lại toàn bộ số tiền đã đóng và tiền lãi. Bà A mua cho con trai 6 tuổi gói bảo hiểm trên. Hãy tính số tiền con trai bà A nhận được khi kết thúc hợp đồng bảo hiểm?
+\end{problembox}
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là tổng số tiền bà A đã đóng và tiền lãi sau $t$ (năm).
+
+\hspace{1cm} $R$ là lãi suất ghép hàng năm.
+
+\hspace{1cm} $M$ là số tiền tiết kiệm bà A đóng mỗi năm.
+
+Tốc độ thay đổi của tổng số tiền theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) + M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = 0.03 \times S(t) + 15 \times 10^6
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.03 \times S(t) = 15 \times 10^6
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.03 \times t})' \, dt = \int (15 \times 10^6 \times e^{-0.03 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.03 \times t} = -5 \times 10^8 \times e^{-0.03 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = -5 \times 10^8 + C \times e^{0.03 \times t}
+\]
+
+$S(0) = 0 \Rightarrow C = 5 \times 10^8$
+
+$t_0 = 18 - 6 = 12$
+
+$S(t_0) = S(12) = -5 \times 10^8 + 5 \times 10^8 \times e^{0.03 \times 12} \approx 216{,}664{,}707$ đồng
+
+\newpage
+\subsection{Bài 10}
+\begin{problembox}
+\textbf{Đề bài.} Một công ty Bảo hiểm nhân thọ cung cấp sản phẩm cho trẻ dưới 18 tuổi như sau: khách hàng tham gia bảo hiểm mỗi năm đóng 15 triệu, lãi suất cố định là 3\%/ năm đến 18 tuổi, lãi ghép hàng năm, hết hạn hợp đồng khách hàng nhận lại toàn bộ số tiền đã đóng và tiền lãi. Bà A mua cho con trai gói bảo hiểm trên. Biết cuối năm 2018 con bà A đã nhận số tiền sau khi kết thúc hợp đồng bảo hiểm là 150 triệu đồng. Hãy tính xác định năm bà A tham gia bảo hiểm?
+\end{problembox}
+
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền con bà A đang có theo $t$ (năm).
+
+\hspace{1cm} $R$ là lãi suất tham gia bảo hiểm mỗi năm.
+
+\hspace{1cm} $M$ là số tiền bà A trả mỗi năm.
+
+Tốc độ thay đổi của số tiền con bà A nhận được theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) + M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = r \times S(t) + 15 \times 10^6
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.03 \times S(t) = 15 \times 10^6
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.03 \times t})' \, dt = \int (15 \times 10^6 \times e^{-0.03 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.03 \times t} = -\frac{15 \times 10^6}{0.03} \times e^{-0.03 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = -\frac{15 \times 10^6}{0.03} + C \times e^{0.03 \times t}
+\]
+
+$S(0) = 0$
+
+$\Rightarrow 0 = -\frac{15 \times 10^6}{0.03} + C \times e^{0.03 \times 0}$
+
+$\Rightarrow C = \frac{15 \times 10^6}{0.03}$
+
+$\Rightarrow S(t) = -\frac{15 \times 10^6}{0.03} + \frac{15 \times 10^6}{0.03} \times e^{0.03 \times t}$
+
+$S(t_0) = 150 \times 10^6$
+
+$\Rightarrow 150 \times 10^6 = -\frac{15 \times 10^6}{0.03} + \frac{15 \times 10^6}{0.03} \times e^{0.03 \times t_0}$
+
+$\Rightarrow t_0 \approx 8.75$ (năm)
+
+Vậy năm bà A tham gia Bảo hiểm là 2009.
+
+\newpage
+\subsection{Bài 11}
+\begin{problembox}
+\textbf{Đề bài.} Ông T vay vốn ngân hàng để làm trang trại. Lãi suất vay cố định là 3.6\%/ quý. Lãi ghép hàng tháng. Mỗi tháng ông T đều trả 22 triệu đồng. Đúng 3 năm sau thì ông trả hết khoản vay trên và tất toán hợp đồng vay. Hãy tính số tiền ông T đã vay?
+\end{problembox}
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền ông T còn nợ sau $t$ (tháng).
+
+\hspace{1cm} $R$ là lãi suất vay mỗi tháng.
+
+\hspace{1cm} $M$ là số tiền ông T trả mỗi tháng.
+
+Tốc độ thay đổi của số tiền ông T nợ theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) - M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = 0.036 \times S(t) - 22 \times 10^6
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.036 \times S(t) = -22 \times 10^6
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.036 \times t})' \, dt = \int (-22 \times 10^6 \times e^{-0.036 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.036 \times t} = \frac{11}{18} \times 10^9 \times e^{-0.036 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = \frac{11}{18} \times 10^9 + C \times e^{0.036 \times t}
+\]
+
+$t_0 = 3 \times 12 = 36$ tháng
+
+$S(36) = 0 \Rightarrow C = -\frac{11}{18} \times 10^9 \times e^{-1.296}$
+
+$S(0) = \frac{11}{18} \times 10^9 - \frac{11}{18} \times 10^9 \times e^{-1.296} \times e^{0.036 \times 0} \approx 443{,}896{,}381$ đồng
+
+\newpage
+\subsection{Bài 12}
+\begin{problembox}
+\textbf{Đề bài.} Để đáp ứng nhu cầu vốn kinh doanh, tháng 2/2019 công ty A huy động các nhân viên cho vay 4.5 tỷ đồng với lãi suất 1.5\%/ tháng, lãi ghép hàng tháng. Mỗi tháng công ty trích từ doanh thu ra 230 triệu để trả lại cho các nhân viên. Hãy xác định thời điểm mà công ty hoàn trả hết tiền cho nhân viên?
+\end{problembox}
+
+\noindent\textbf{Lời giải.}
+
+Gọi $S(t)$ là số tiền còn nợ của nhân viên (tháng).
+
+\hspace{1cm} $R$ là lãi suất cho vay mỗi tháng.
+
+\hspace{1cm} $M$ là số tiền công ty trả cho khoản vay mỗi tháng.
+
+Tốc độ thay đổi của số tiền còn nợ theo $t$:
+
+\[
+\frac{dS}{dt} = r \times S(t) - M
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} = 0.015 \times S(t) - 230 \times 10^6
+\]
+
+\[
+\Rightarrow \frac{dS}{dt} - 0.015 \times S(t) = -230 \times 10^6
+\]
+
+\[
+\Rightarrow \int (S(t) \times e^{-0.015 \times t})' \, dt = \int (-230 \times 10^6 \times e^{-0.015 \times t}) \, dt
+\]
+
+\[
+\Rightarrow S(t) \times e^{-0.015 \times t} = \frac{230 \times 10^6}{0.015} \times e^{-0.015 \times t} + C
+\]
+
+\[
+\Rightarrow S(t) = \frac{230 \times 10^6}{0.015} + C \times e^{0.015 \times t}
+\]
+
+$S(0) = 4.5 \times 10^9$
+
+$\Rightarrow 4.5 \times 10^9 = \frac{230 \times 10^6}{0.015} + C \times e^{0.015 \times 0}$
+
+$\Rightarrow C = 4.5 \times 10^9 - \frac{230 \times 10^6}{0.015}$
+
+$\Rightarrow S(t) = \frac{230 \times 10^6}{0.015} + \left(4.5 \times 10^9 - \frac{230 \times 10^6}{0.015}\right) \times e^{0.015 \times t}$
+
+$S(t_0) = 0$
+
+$\Rightarrow 0 = \frac{230 \times 10^6}{0.015} + \left(4.5 \times 10^9 - \frac{230 \times 10^6}{0.015}\right) \times e^{0.015 \times t_0}$
+
+$\Rightarrow t_0 \approx 23.16$ (tháng)
+
+Vậy công ty mất khoảng $24$ tháng để hoàn trả hết tiền cho nhân viên.
+
+\vspace{0.5cm}
+\noindent\textbf{Quy đổi lãi suất:}
+
+\noindent
+$A$: Tiền gốc ban đầu.
+
+\noindent
+Lãi kép tháng $\Rightarrow$ lãi liên tục năm:
+
+\[
+A(1 + r_{\text{tháng}})^{12} = Ae^{r_{\text{năm}}}
+\]
+
+\[
+\Rightarrow 12\ln(1 + r_{\text{tháng}}) = r_{\text{năm}}
+\]
+
+\noindent
+Lãi kép năm $\Rightarrow$ lãi liên tục tháng:
+
+\[
+A(1 + r_{\text{năm}}) = Ae^{12 \times r_{\text{tháng}}}
+\]
+
+\[
+\Rightarrow \frac{\ln(1 + r_{\text{năm}})}{12} = r_{\text{tháng}}
+\]
 
 \end{document}
