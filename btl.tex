@@ -678,7 +678,32 @@ $\Rightarrow t_0 \approx 25{,}4892$ tháng
 
 Vậy thời điểm ông A trả góp xong là tháng 8/2021.
 
+\vspace{0.3cm}
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t)
+eq = diff(S) == 0.01*S - 2*10^6
+cond = S(0) == 45*10^6
+S(t) = dsolve(eq, cond)
+t = solve(S(t), t);
+t = vpa(t, 5)
+\end{lstlisting}
+
 \newpage
+\vspace{0.5cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{S(t)}{100} - 20000000 \\
+    \text{cond} &= S(0) = 45000000 \\
+    S(t) &= 200000000 - 155000000 e^{t/100} \\
+    t &= 25.489
+\end{align*}
+
+
+\vspace{0.3cm}
 \subsection{Bài 2}
 \begin{problembox}
 \textbf{Đề bài.} Tháng 2/2019, bà T mua trả góp 1 xe máy tay ga có giá 62 triệu đồng. Bà T trả ngay 16 triệu, phần còn lại bà T trả góp với lãi suất 1.5\% mỗi tháng. Biết mỗi tháng bà T trả 1 triệu. Hãy tính thời gian bà T cần để trả hết tiền mua xe?
@@ -727,6 +752,30 @@ $\Rightarrow t_0 \approx 78{,}07$ tháng
 Vậy thời điểm bà T cần trả góp xong là 79 tháng.
 
 \newpage
+\vspace{0.5cm}
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t)
+eq = diff(S) == 0.015*S - 1*10^6
+cond = S(0) == 46*10^6
+S(t) = dsolve(eq, cond)
+t = solve(S(t), t);
+t = vpa(t, 6)
+\end{lstlisting}
+
+\vspace{0.5cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{3 S(t)}{200} - 10000000 \\
+    \text{cond} &= S(0) = 46000000 \\
+    S(t) &= \frac{200000000}{3} - \frac{62000000}{3} e^{\frac{3t}{200}} \\
+    t &= 78.0789
+\end{align*}
+
+\newpage
 \subsection{Bài 3}
 \begin{problembox}
 \textbf{Đề bài.} Đầu năm 2019 ông A mua một căn hộ chung cư có giá 2.2 tỷ. Vì không đủ tiền trả nên ông A đề nghị bên bán cho ông trả trước một phần tiền (gọi là $P_0$), phần còn lại ông A vay vốn ngân hàng với lãi suất 12\% một năm trả trong vòng 15 năm. Biết mỗi tháng ông A trả 20 triệu đồng. Hãy tính $P_0$?
@@ -773,6 +822,34 @@ $S(15) = 0 \Rightarrow C = -2 \times 10^9 \times e^{-1.8}$
 Số tiền ban đầu: $S(0) = 2 \times 10^9 - 2 \times 10^9 \times e^{-1.8}$
 
 Số tiền phải trả trước: $P_0 = 2.2 \times 10^9 - S(0) = 530{,}597{,}776$ đồng
+
+\vspace{0.5cm}
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t)
+
+eq = diff(S) == 0.12*S - 240*10^6
+
+cond = S(15) == 0
+
+S(t) = dsolve(eq, cond)
+
+P0 = 2.2*10^9 - S(0);
+
+P0 = vpa(P0, 11)
+\end{lstlisting}
+
+\vspace{0.5cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{3 S(t)}{25} - 240000000 \\
+    \text{cond} &= S(15) = 0 \\
+    S(t) &= 2000000000 - 2000000000 e^{\frac{3t}{25}} e^{-\frac{9}{5}} \\
+    P0 &= 530597776.44
+\end{align*}
 
 \newpage
 \subsection{Bài 4}
@@ -827,6 +904,29 @@ $S(18) = 0$
 $\Rightarrow 0 = 125 \times 10^6 + (27 \times 10^6 - P_0 - 125 \times 10^6) \times e^{0.008 \times 18}$
 
 $P_0 \approx 10{,}235{,}969$ (đồng)
+
+\vspace{0.5cm}
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t) P0
+eq = diff(S) == 0.008*S - 10^6
+cond = S(0) == 27*10^6 - P0
+S(t) = dsolve(eq, cond)
+P0 = solve(S(18), P0);
+P0 = vpa(P0, 10)
+\end{lstlisting}
+
+\vspace{0.3cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{S(t)}{125} - 10000000 \\
+    \text{cond} &= S(0) = 27000000 - P_0 \\
+    S(t) &= 1250000000 - e^{t/125} (P_0 + 98000000) \\
+    P_0 &= 10235968.51
+\end{align*}
 
 \newpage
 \subsection{Bài 5}
@@ -883,6 +983,29 @@ M &\approx 2{,}549{,}629 \text{ đồng}
 \]
 
 Vậy mỗi tháng ông C phải trả $2{,}549{,}629$ đồng.
+
+\vspace{0.5cm}
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t) M
+eq = diff(S) == 0.01*S - M
+cond = S(0) == 42*10^6
+S(t) = dsolve(eq, cond)
+M = solve(S(18), M);
+M = vpa(M, 9)
+\end{lstlisting}
+
+\vspace{0.5cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{S(t)}{100} - M \\
+    \text{cond} &= S(0) = 42000000 \\
+    S(t) &= 100 M - e^{t/100} (100 M - 42000000) \\
+    M &= 2549629.93
+\end{align*}
 
 \newpage
 \subsection{Bài 6}
@@ -944,6 +1067,29 @@ Lấy $t_0 = 55$
 
 Vậy thời gian mà bà A có thể chu cấp cho cháu mình là tới tháng 7/2024.
 
+\vspace{0.5cm}
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t) t0
+eq = diff(S) == 0.004*S - 2*10^6
+cond = S(0) == 10^8
+S(t) = dsolve(eq, cond)
+t0 = solve(S(t0), t0);
+t0 = vpa(t0, 5)
+\end{lstlisting}
+
+\vspace{0.3cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{S(t)}{250} - 2000000 \\
+    \text{cond} &= S(0) = 10000000 \\
+    S(t) &= 500000000 - 400000000 e^{t/250} \\
+    t0 &= 55.786
+\end{align*}
+
 \newpage
 \subsection{Bài 7}
 \begin{problembox}
@@ -991,31 +1137,36 @@ $S(0) = 10^8 \Rightarrow C = 21 \times 10^8$
 $S(t_0) = 1.5 \times 10^9 = -2 \times 10^9 + 21 \times 10^8 \times e^{0.06 \times t_0}$
 
 $\Rightarrow t_0 \approx 8.51376 \approx 9$ năm
-\begin{align*}
-\frac{dS}{dt} &= r \times S(t) + M \\
-\frac{dS}{dt} &= 0.06 \times S(t) + 12 \times 10^7 \\
-\frac{dS}{dt} - 0.06 \times S(t) &= 12 \times 10^7
-\end{align*}
-
-Nhân cả hai vế với $e^{-0.06t}$:
-\begin{align*}
-\left(S(t) \times e^{-0.06t}\right)' &= 12 \times 10^7 \times e^{-0.06t} \\
-S(t) \times e^{-0.06t} &= -2 \times 10^9 \times e^{-0.06t} + C \\
-S(t) &= -2 \times 10^9 + C \times e^{0.06t}
-\end{align*}
-
-Với điều kiện ban đầu $S(0) = 10^8$:
-\[
-C = 21 \times 10^8
-\]
-
-Khi $S(t_0) = 1.5 \times 10^9$:
-\begin{align*}
-1.5 \times 10^9 &= -2 \times 10^9 + 21 \times 10^8 \times e^{0.06t_0} \\
-t_0 &= 8.51376 \approx 9 \text{ năm}
-\end{align*}
 
 \vspace{0.5cm}
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t) t0
+
+eq = diff(S) == 0.06*S + 12*10^7
+
+cond = S(0) == 10^8
+
+S(t) = dsolve(eq, cond)
+
+t0 = solve(S(t0) == 1.5*10^9, t0);
+
+t0 = vpa(t0, 6)
+\end{lstlisting}
+
+\vspace{0.5cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{3 S(t)}{50} + 12000000 \\
+    \text{cond} &= S(0) = 10000000 \\
+    S(t) &= 210000000 e^{\frac{3t}{50}} - 200000000 \\
+    t0 &= 8.51376
+\end{align*}
+
+\newpage
 
 \subsection{Bài 8}
 \begin{problembox}
@@ -1079,6 +1230,41 @@ $\Rightarrow 12 \times \ln(1 + 0.19\%) \approx 2.27\%$
 Vậy lãi suất theo năm ông phải trả là $2.27\%$.
 
 \newpage
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t) rt
+
+eq = diff(S) == rt*S - 12*10^6
+
+cond = S(0) == 680*10^6
+
+S(t) = dsolve(eq, cond)
+
+rt = solve(S(60) == 0, rt);
+
+rt = vpa(rt, 3)
+
+rn = 12*log(1 + rt);%(log trong matlab la log tu nhien)
+
+rn = vpa(rn, 2)
+
+
+\end{lstlisting}
+
+\vspace{0.5cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = rt S(t) - 12000000 \\
+    \text{cond} &= S(0) = 680000000 \\
+    S(t) &= \frac{e^{rt \cdot t} (680000000 \cdot rt - 12000000) + 12000000}{rt} \\
+    rt &= 0.00192 \\
+    rn &= 0.023
+\end{align*}
+
+\newpage
 \subsection{Bài 9}
 \begin{problembox}
 \textbf{Đề bài.} Một công ty Bảo hiểm nhân thọ cung cấp sản phẩm cho trẻ dưới 18 tuổi như sau: khách hàng tham gia bảo hiểm mỗi năm đóng 15 triệu, lãi suất cố định là 3\%/ năm đến 18 tuổi, lãi ghép hàng năm, hết hạn hợp đồng khách hàng nhận lại toàn bộ số tiền đã đóng và tiền lãi. Bà A mua cho con trai 6 tuổi gói bảo hiểm trên. Hãy tính số tiền con trai bà A nhận được khi kết thúc hợp đồng bảo hiểm?
@@ -1122,6 +1308,36 @@ $S(0) = 0 \Rightarrow C = 5 \times 10^8$
 $t_0 = 18 - 6 = 12$
 
 $S(t_0) = S(12) = -5 \times 10^8 + 5 \times 10^8 \times e^{0.03 \times 12} \approx 216{,}664{,}707$ đồng
+
+\vspace{0.5cm}
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t)
+
+eq = diff(S) == 0.03*S + 15*10^6
+
+cond = S(0) == 0
+
+S(t) = dsolve(eq, cond)
+
+S = subs(S,12);
+
+S = vpa(S, 11)
+
+
+\end{lstlisting}
+
+\vspace{0.3cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{3 S(t)}{100} + 15000000 \\
+    \text{cond} &= S(0) = 0 \\
+    S(t) &= 500000000 e^{\frac{3t}{100}} - 500000000 \\
+    S(t) &= 216664707.28
+\end{align*}
 
 \newpage
 \subsection{Bài 10}
@@ -1175,9 +1391,37 @@ $S(t_0) = 150 \times 10^6$
 
 $\Rightarrow 150 \times 10^6 = -\frac{15 \times 10^6}{0.03} + \frac{15 \times 10^6}{0.03} \times e^{0.03 \times t_0}$
 
-$\Rightarrow t_0 \approx 8.75$ (năm)
+$\Rightarrow t_0 \approx 8.75$ (năm) 
+$\Rightarrow$ Vậy năm bà A tham gia Bảo hiểm là 2009.
 
-Vậy năm bà A tham gia Bảo hiểm là 2009.
+\newpage
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t) t0
+
+eq = diff(S) == 0.03*S + 15*10^6
+
+cond = S(0) == 0
+
+S(t) = dsolve(eq, cond)
+
+t0 = solve(S(t0) == 150* 10^6, t0);
+
+t0 = vpa(t0, 3)
+
+\end{lstlisting}
+
+\vspace{0.5cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{3 S(t)}{100} + 15000000 \\
+    \text{cond} &= S(0) = 0 \\
+    S(t) &= 500000000 e^{\frac{3t}{100}} - 500000000 \\
+    t0 &= 8.75
+\end{align*}
 
 \newpage
 \subsection{Bài 11}
@@ -1223,6 +1467,35 @@ $t_0 = 3 \times 12 = 36$ tháng
 $S(36) = 0 \Rightarrow C = -\frac{11}{18} \times 10^9 \times e^{-1.296}$
 
 $S(0) = \frac{11}{18} \times 10^9 - \frac{11}{18} \times 10^9 \times e^{-1.296} \times e^{0.036 \times 0} \approx 443{,}896{,}381$ đồng
+
+\vspace{0.5cm}
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t)
+
+eq = diff(S) == 0.036*S - 22*10^6
+
+cond = S(36) == 0
+
+S(t) = dsolve(eq, cond)
+
+S = subs(S,0);
+
+S = vpa(S, 11)
+
+\end{lstlisting}
+
+\vspace{0.3cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{9 S(t)}{250} - 22000000 \\
+    \text{cond} &= S(36) = 0 \\
+    S(t) &= \frac{5500000000}{9} - \frac{5500000000}{9} e^{\frac{9t}{250}} e^{-\frac{162}{125}} \\
+    S(t) &= 443896381.27
+\end{align*}
 
 \newpage
 \subsection{Bài 12}
@@ -1279,6 +1552,34 @@ $\Rightarrow 0 = \frac{230 \times 10^6}{0.015} + \left(4.5 \times 10^9 - \frac{2
 $\Rightarrow t_0 \approx 23.16$ (tháng)
 
 Vậy công ty mất khoảng $24$ tháng để hoàn trả hết tiền cho nhân viên.
+
+\newpage
+\noindent\textbf{Code MATLAB:}
+
+\begin{lstlisting}[language=Matlab]
+syms t S(t) t0
+
+eq = diff(S) == 0.015*S - 230*10^6
+
+cond = S(0) == 4.5*10^9
+
+S(t) = dsolve(eq, cond)
+
+t0 = solve(S(t0), t0);
+
+t0 = vpa(t0, 4)
+\end{lstlisting}
+
+\vspace{0.5cm}
+\noindent\textbf{Kết quả chạy MATLAB:}
+
+\noindent
+\begin{align*}
+    \text{eq}(t) &= \frac{\partial}{\partial t} S(t) = \frac{3 S(t)}{200} - 23000000 \\
+    \text{cond} &= S(0) = 45000000 \\
+    S(t) &= \frac{4600000000}{3} - \frac{3250000000}{3} e^{\frac{3t}{200}} \\
+    t0 &= 23.16
+\end{align*}
 
 \vspace{0.5cm}
 \noindent\textbf{Quy đổi lãi suất:}
